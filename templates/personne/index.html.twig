@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Personne index{% endblock %}
+
+{% block body %}
+    <h1 class="text-danger">Personne index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for personne in personnes %}
+            <tr>
+                <td>{{ personne.id }}</td>
+                <td>{{ personne.nom }}</td>
+                <td>{{ personne.prenom }}</td>
+                <td>
+                    <a href="{{ path('personne_show', {'id': personne.id}) }}" class="btn btn-warning">show</a>
+                    <a href="{{ path('personne_edit', {'id': personne.id}) }}" class="btn btn-warning">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pt-2">
+        <a href="{{ path('personne_new') }}" class="btn btn-warning">Create new</a>
+    </div>
+    <br>
+    <div class="pt-2">
+        <a href="{{ path('equipe_index') }}" class="btn btn-danger btn-lg">Gérer les équipes</a>
+    </div>
+
+{% endblock %}
